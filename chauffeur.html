@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chauffeur Service — Palm Exotic Rentals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --bg2:#f4f8fc; --card:#ffffff; --line:#e4eaf1;
+    --text:#0a1628; --muted:#5b6b80; --blue:#1e8fcf; --blue2:#3eb4f5; --navy:#0a1628;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 22px}
+  .btn{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;padding:12px 22px;border-radius:999px;font-weight:700;font-size:14px;border:none;cursor:pointer;box-shadow:0 6px 18px rgba(30,143,207,.35);display:inline-block}
+  .btn:hover{filter:brightness(1.06)}
+  .ghostbtn{background:#fff;border:1px solid var(--line);color:var(--blue);padding:12px 22px;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer;display:inline-block}
+  .ghostbtn:hover{background:var(--bg2)}
+
+  .pagehead{background:linear-gradient(120deg,#0a1628,#123a5c);color:#fff}
+  .pagehead nav{display:flex;align-items:center;justify-content:space-between;height:80px;position:relative;z-index:3}
+  .brand{font-weight:800;letter-spacing:.5px;font-size:16px;display:flex;align-items:center;gap:9px}
+  .navright{display:flex;align-items:center;gap:28px}
+  .brand small{display:block;font-size:9px;letter-spacing:3px;color:rgba(255,255,255,.7);font-weight:600}
+  .brand .brandlogo{height:34px;width:auto;display:block}
+  @media(max-width:820px){.brand .brandlogo{height:30px}.brand{font-size:15px}}
+  .navlinks{display:flex;gap:26px;font-size:14px;font-weight:500;color:rgba(255,255,255,.9)}
+  .navlinks a:hover{color:#fff}
+  .soonpill{font-size:9px;font-weight:800;background:var(--blue2);color:#08121e;padding:2px 7px;border-radius:999px;margin-left:6px;vertical-align:middle;text-transform:uppercase;letter-spacing:.5px}
+  .promobar{display:none}
+  @media(max-width:820px){.promobar{display:flex;align-items:center;justify-content:center;gap:7px;background:linear-gradient(90deg,var(--blue),var(--blue2));color:#fff;font-size:12.5px;font-weight:700;padding:9px 12px;letter-spacing:.4px;cursor:pointer}.promobar .pbtag{background:rgba(255,255,255,.22);border-radius:999px;padding:1px 8px;font-size:10px;text-transform:uppercase;letter-spacing:.6px}}
+  .navtoggle{display:none;background:none;border:0;color:#fff;font-size:26px;line-height:1;cursor:pointer;padding:4px 6px}
+  @media(max-width:820px){
+    .navtoggle{display:block}
+    .navlinks{display:none}
+    .navlinks.open{display:flex;flex-direction:column;position:absolute;top:70px;right:0;background:rgba(10,22,40,.97);padding:18px 22px;border-radius:14px;gap:18px;min-width:190px;z-index:30;box-shadow:0 16px 40px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12)}
+  }
+  .phtitle{padding:10px 0 34px;text-align:center}
+  .phtitle .eyebrow{letter-spacing:4px;font-size:12px;font-weight:600;color:var(--blue2);text-transform:uppercase;margin-bottom:12px}
+  .phtitle h1{font-size:42px;letter-spacing:-1px;font-weight:800}
+  .phtitle p{color:#b9cbe0;margin-top:8px}
+  @media(max-width:600px){.phtitle h1{font-size:30px}}
+
+  /* SHOWCASE */
+  .showsec{padding:56px 0 30px}
+  .showgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+  @media(max-width:840px){.showgrid{grid-template-columns:1fr;gap:26px}}
+  .showimg{width:100%;aspect-ratio:16/11;object-fit:cover;border-radius:18px;background:#eef3f8;box-shadow:0 14px 40px rgba(10,22,40,.16)}
+  .showbody h2{font-size:30px;letter-spacing:-.6px;font-weight:800;margin-bottom:6px}
+  .rate{color:var(--blue);font-weight:800;font-size:20px;margin-bottom:14px}
+  .rate span{color:var(--muted);font-weight:600;font-size:14px}
+  .showbody p{color:#33465c;font-size:15.5px;margin-bottom:14px}
+  .chips{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0 22px}
+  .chips span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--muted)}
+  .cta{display:flex;gap:12px;flex-wrap:wrap}
+
+  /* DETAILS BAND */
+  .band{padding:56px 0;background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:40px}
+  .sechead{text-align:center;margin-bottom:30px}
+  .sechead h2{font-size:28px;letter-spacing:-.6px;font-weight:800}
+  .sechead p{color:var(--muted);margin-top:6px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:760px){.cards{grid-template-columns:1fr}}
+  .icard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:0 2px 10px rgba(10,22,40,.04)}
+  .icard .ic{font-size:26px}
+  .icard h4{margin:12px 0 6px;font-size:17px}
+  .icard p{color:var(--muted);font-size:14px}
+  .note{max-width:820px;margin:26px auto 0;background:#eaf5fd;border:1px solid #bfe1f5;color:#155a80;font-size:13.5px;padding:14px 18px;border-radius:12px;text-align:center}
+
+  .closecta{text-align:center;padding:60px 0}
+  .closecta h2{font-size:28px;font-weight:800;letter-spacing:-.5px}
+  .closecta p{color:var(--muted);margin:8px 0 22px}
+  footer{background:var(--navy);color:#9fb0c2;padding:40px 0;font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<div class="promobar" onclick="location.href='/escalade-chauffeur'">🎩 Chauffeur from $125/hr <span class="pbtag">Book</span> — tap to reserve</div>
+
+<header class="pagehead" id="top">
+  <div class="wrap" style="width:100%"><nav>
+    <a class="brand" href="/"><img class="brandlogo" src="/logo-emblem.png" alt="Palm Exotic Rentals emblem"> <div>PALM EXOTIC RENTALS<small>FEEL THE LUXURY</small></div></a>
+    <div class="navright">
+      <div class="navlinks"><a href="/vehicles">Fleet</a><a href="/villas">Villas<span class="soonpill">Soon</span></a><a href="/chauffeur">Chauffeur</a><a href="/#why">About</a><a href="/#faq">FAQ</a><a href="/#contact">Contact</a></div>
+      <button class="btn" onclick="location.href='/escalade-chauffeur'">Book a Chauffeur</button>
+      <button class="navtoggle" aria-label="Menu" onclick="document.querySelector('.navlinks').classList.toggle('open')">☰</button>
+    </div>
+  </nav></div>
+  <div class="wrap phtitle">
+    <div class="eyebrow">San Juan · Puerto Rico</div>
+    <h1>Chauffeur Service</h1>
+    <p>Rather be driven? Arrive in a moving suite.</p>
+  </div>
+</header>
+
+<section class="showsec"><div class="wrap">
+  <div class="showgrid">
+    <img class="showimg" src="/cadillac-escalade-chauffeur.webp" alt="Cadillac Escalade chauffeur service" onerror="this.style.display='none'">
+    <div class="showbody">
+      <h2>Professional Chauffeur, Black-on-Black Escalade</h2>
+      <div class="rate">From $125<span> / hour</span></div>
+      <p>Sit back and enjoy the island while a professional driver handles the road. Our chauffeur service runs in a black-on-black Cadillac Escalade ESV — captain's seats, Burmester audio, and Super Cruise smoothness — the perfect way to arrive at events, nights out, weddings, or any special occasion.</p>
+      <p>Prefer door-to-door? We handle airport pickups and point-to-point transfers anywhere across Puerto Rico.</p>
+      <div class="chips">
+        <span>🎩 Professional driver</span>
+        <span>🖤 Cadillac Escalade ESV</span>
+        <span>✈️ Airport transfers</span>
+        <span>🥂 Events &amp; nights out</span>
+      </div>
+      <div class="cta">
+        <button class="btn" onclick="location.href='/escalade-chauffeur'">Book a Chauffeur</button>
+        <button class="ghostbtn" onclick="window.open('https://wa.me/19392417326','_blank')">💬 Message us</button>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <div class="sechead"><h2>How It Works</h2><p>Simple, flexible, and built around your plans</p></div>
+  <div class="cards">
+    <div class="icard"><div class="ic">🕐</div><h4>Hourly booking</h4><p>Book by the hour from $125/hr. Keep the driver for the evening or just the ride — you decide.</p></div>
+    <div class="icard"><div class="ic">📍</div><h4>Anywhere on the island</h4><p>San Juan and island-wide. Airport pickups, hotel transfers, dinner, or a full night out.</p></div>
+    <div class="icard"><div class="ic">🥂</div><h4>Any occasion</h4><p>Weddings, birthdays, business travel, or a night on the town — arrive relaxed and in style.</p></div>
+  </div>
+  <div class="note">⏱️ <strong>2-hour minimum</strong> in the metro area · <strong>4-hour minimum</strong> outside the metro area. Airport &amp; point-to-point transfers available.</div>
+</div></section>
+
+<section class="closecta"><div class="wrap">
+  <h2>Ready to Ride?</h2>
+  <p>Reserve your chauffeur, or message us with your plans and we'll take care of the rest.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <button class="btn" onclick="location.href='/escalade-chauffeur'">Book a Chauffeur</button>
+    <a class="ghostbtn" href="/vehicles">Browse the fleet →</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">© Palm Exotic Rentals · Puerto Rico &amp; Miami · Feel the Luxury</div></footer>
+
+<script>
+document.querySelectorAll('.navlinks a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('.navlinks').classList.remove('open');});});
+</script>
+</body>
+</html>
