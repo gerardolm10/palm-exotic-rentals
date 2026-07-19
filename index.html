@@ -152,7 +152,7 @@
     <div class="eyebrow">San Juan · Puerto Rico</div>
     <h1>Drive <em>Luxury.</em> Book Your <em>Dream</em> Car.</h1>
     <p>Hand-picked exotics + premium SUVs. Delivered anywhere — hotel, airport, your front door.</p>
-    <div class="cta"><button class="btn" onclick="document.getElementById('locations').scrollIntoView({behavior:'smooth'})">Browse the Fleet</button><button class="ghost">Message Us</button></div>
+    <div class="cta"><button class="btn" onclick="document.getElementById('locations').scrollIntoView({behavior:'smooth'})">Browse the Fleet</button><button class="ghost" onclick="window.open('https://wa.me/19392417326','_blank')">Message Us</button></div>
   </div>
   <div class="swapnote">Hero photo — swap for any image you like</div>
 </section>
@@ -161,7 +161,7 @@
   <div class="sechead"><h2>Where Are You Driving?</h2><p>Pick your location to explore the fleet</p></div>
   <div class="loccards">
     <div class="loccard" onclick="pickLoc('Puerto Rico')">
-      <div class="bg" style="background-image:url('https://palmexoticrentals.com/images/hero-bg.webp')"></div>
+      <div class="bg" style="background-image:url('https://go.palmexoticrentals.com/images/hero-bg.webp')"></div>
       <div class="ov"></div>
       <span class="locbadge" id="prCount">Puerto Rico</span>
       <h3>Puerto Rico</h3>
@@ -214,7 +214,7 @@
 <!-- CHAUFFEUR -->
 <section class="sec" id="chauffeur" style="padding-top:0"><div class="wrap"><div class="chauffeur">
   <div><h3>Rather Be Driven?</h3><p>Professional chauffeur service from <strong>$125/hour</strong> in a Cadillac Escalade — events, nights out, or any occasion. 2-hour minimum, and airport &amp; point-to-point transfers available.</p></div>
-  <button class="btn" style="white-space:nowrap">Book a Chauffeur</button>
+  <button class="btn" style="white-space:nowrap" onclick="var l=document.getElementById('vbook-cadillac-escalade-chauffeur');if(l)l.click();">Book a Chauffeur</button>
 </div></div></section>
 
 <!-- TESTIMONIALS -->
@@ -248,8 +248,8 @@
   <h2>Talk To A Concierge</h2>
   <p>WhatsApp is the fastest way to reach us. Based in San Juan, Puerto Rico — serving the island &amp; Miami.</p>
   <div class="ways">
-    <button class="wbtn">💬 Message Us</button>
-    <button class="btn">Send a Message</button>
+    <button class="wbtn" onclick="window.open('https://wa.me/19392417326','_blank')">💬 Message Us</button>
+    <button class="btn" onclick="location.href='mailto:info@palmexoticrentals.com'">Send a Message</button>
   </div>
   <p style="margin-top:16px;font-size:13px">📞 <a href="tel:+19392417326" style="color:var(--blue)">939-241-7326</a> &nbsp;·&nbsp; ✉️ <a href="mailto:info@palmexoticrentals.com" style="color:var(--blue)">info@palmexoticrentals.com</a></p>
 </div></section>
@@ -274,7 +274,7 @@
 </div>
 
 <script>
-const LIVE='https://palmexoticrentals.com/';
+const LIVE='https://go.palmexoticrentals.com/';
 const VALARA_UUIDS={
  'lamborghini-urus-baby-blue':'9fd04041-04e7-4b1d-82c8-581d8ee5d55c',
  'lamborghini-urus-yellow':'f5a7dd6d-2f63-40ed-94aa-f72faa8fa421',
