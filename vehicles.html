@@ -228,7 +228,7 @@ function galNav(d){galSet(galIdx+d);}
 document.addEventListener('touchstart',function(e){window.__sx=(e.target.closest&&e.target.closest('#mgal'))?e.touches[0].clientX:null;},{passive:true});
 document.addEventListener('touchend',function(e){if(window.__sx==null)return;var dx=e.changedTouches[0].clientX-window.__sx;if(Math.abs(dx)>40)galNav(dx<0?1:-1);window.__sx=null;},{passive:true});
 document.addEventListener('keydown',function(e){if(!document.getElementById('modal').classList.contains('open'))return;if(e.key==='ArrowLeft')galNav(-1);if(e.key==='ArrowRight')galNav(1);if(e.key==='Escape')closeM();});
-function openM(slug){
+function openM(slug,fromUrl){
   const c=cars.find(x=>x.slug===slug); if(!c)return; current=c;
   (function(){
     var mi=document.getElementById('mImg');
@@ -253,8 +253,21 @@ function openM(slug){
   msg.style.display=known?'none':'block';
   msg.textContent='Not in Valara yet — “Book” opens your full catalog. Add '+c.name+' in Valara to enable direct booking.';
   document.getElementById('modal').classList.add('open');
+  // Reflect the car's shareable link in the address bar
+  if(c.short){ document.title=c.name+' — Palm Exotic Rentals'; if(!fromUrl){ try{ history.pushState({car:c.slug}, '', '/'+c.short); }catch(e){} } }
 }
-function closeM(){document.getElementById('modal').classList.remove('open')}
+function closeM(){
+  document.getElementById('modal').classList.remove('open');
+  document.title='Our Fleet — Palm Exotic Rentals';
+  if((location.pathname||'')!=='/vehicles'){ try{ history.pushState({}, '', '/vehicles'); }catch(e){} }
+}
+// Browser back/forward: sync the popup with the URL
+window.addEventListener('popstate',function(){
+  var p=(location.pathname||'').replace(/^\/+|\/+$/g,'').toLowerCase();
+  var slug=SHORT2SLUG[p];
+  if(slug){ openM(slug,true); }
+  else { document.getElementById('modal').classList.remove('open'); document.title='Our Fleet — Palm Exotic Rentals'; }
+});
 show('Puerto Rico');
 document.querySelectorAll('.navlinks a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('.navlinks').classList.remove('open');});});
 // Static per-car Valara links (present at load so links.js wires them exactly like the live site)
@@ -263,7 +276,7 @@ document.body.insertAdjacentHTML('beforeend','<div style="position:absolute;left
 (function(){
   var p=(location.pathname||'').replace(/^\/+|\/+$/g,'').toLowerCase();
   var slug=SHORT2SLUG[p];
-  if(slug){ var c=cars.find(function(x){return x.slug===slug;}); if(c){ if(c.loc!=='Puerto Rico'){show(c.loc);} openM(slug); } }
+  if(slug){ var c=cars.find(function(x){return x.slug===slug;}); if(c){ if(c.loc!=='Puerto Rico'){show(c.loc);} openM(slug,true); } }
 })();
 </script>
 <script src="https://api.valara.io/api/v1/public/iframes/links.js?button_color=%23000000&button_text_color=%23FFFFFF&sig=eW1LdjJmU2E3MlIxRlNVcFBwMWkydk5MZ2NIS1hEVVhOWkxBUE52WTJkQ2xRWHBWY2RFUmxkRHZWbk5sU1R6LzFoc3F2b0NxMGs0b2d0aENxc2xrR1JTN21weDBIYWpiMUZveDlDd2trTldMSjZYNVk2Z1gxQW5DMm5tRGFrQnltT3lISzdueGh0SzdCQnUwMHVrTk9aRUNORzBhVHgwak45azhLMDdVZzZWakw0UDNlU3FIeCtESkY2WnpoUFhFem9GazhIVjZxWXgxNFFLQUVEYjl4bjZCblhRWHRzdjZjZVM2LS1GUG1nSDUzWG1XOXRzcGtGLS1zemlSRCs3ZzdRc0R6eXdOaWkwS2lBPT0"></script>
