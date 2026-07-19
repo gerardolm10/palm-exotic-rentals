@@ -274,7 +274,7 @@
 </div>
 
 <script>
-const LIVE='https://go.palmexoticrentals.com/';
+const LIVE='';
 const VALARA_UUIDS={
  'lamborghini-urus-baby-blue':'9fd04041-04e7-4b1d-82c8-581d8ee5d55c',
  'lamborghini-urus-yellow':'f5a7dd6d-2f63-40ed-94aa-f72faa8fa421',
@@ -306,12 +306,12 @@ const cars=[
  {slug:'mercedes-amg-gle-53-coupe',name:'Mercedes-AMG GLE 53 Coupe',color:'Cavansite Blue',badge:'AMG',day:400,fourHour:200,weekly:2240,unit:'day',hp:'429',zero:'5.2s',top:'190 mph',seats:5,drive:'AWD',engine:'3.0L I6 + EQ Boost',deposit:'$1,000',miles:'150 mi/day',img:'images/palm/mercedes-amg-gle-53-coupe/p0.webp',loc:'Puerto Rico',desc:'The AMG fastback in Cavansite Blue. 429 hp, 4MATIC+ grip and that sloping coupe-SUV roofline — the sport SUV that turns heads.'},
  {slug:'bmw-x7-grey',name:'BMW X7',color:'Mineral Grey',badge:'X7',day:300,fourHour:null,weekly:1680,unit:'day',hp:'375',zero:'4.6s',top:'190 mph',seats:7,drive:'AWD',engine:'3.0L Turbo I6',deposit:'$1,000',miles:'150 mi/day',img:'images/palm/bmw-x7-grey/p0.png',loc:'Puerto Rico',desc:'Three-row X7 in mineral grey. Captain seats, panoramic sunroof, executive luxury for groups of seven.'},
  {slug:'cadillac-escalade-chauffeur',name:'Cadillac Escalade — Chauffeured',color:'With driver · 2-hr min',badge:'Chauffeur',day:125,fourHour:null,weekly:null,unit:'hr',hp:'420',zero:'5.7s',top:'190 mph',seats:7,drive:'AWD',engine:'6.2L V8',deposit:'None',miles:'Unlimited',img:'images/palm/cadillac-escalade-chauffeur/p2.jpg',loc:'Puerto Rico',desc:'Black-on-black ESV with a professional chauffeur included. Captain seats, Burmester audio, Super Cruise — arrive in a moving suite. 2-hour minimum; airport &amp; point-to-point transfers available.'},
- {slug:'bmw-x6-grey',name:'BMW X6',color:'Space Grey',badge:'X6',day:400,fourHour:null,weekly:2240,unit:'day',hp:'375',zero:'4.7s',top:'155 mph',seats:5,drive:'AWD',engine:'3.0L Turbo I6',deposit:'$1,000',miles:'150 mi/day',img:null,pending:true,loc:'Puerto Rico',desc:'Coupe-styled X6 in metallic grey — sculpted roofline, twin-turbo inline-six punch, and a driver-focused cabin that turns heads across the island.'},
- {slug:'bmw-x1-white',name:'BMW X1',color:'Alpine White',badge:'X1',day:250,fourHour:null,weekly:1400,unit:'day',hp:'241',zero:'6.2s',top:'143 mph',seats:5,drive:'AWD',engine:'2.0L Turbo I4',deposit:'$750',miles:'200 mi/day',img:null,pending:true,loc:'Puerto Rico',desc:'Agile X1 in crisp Alpine White — nimble, efficient, and premium inside. The ideal compact luxury SUV for cruising San Juan and beyond.'}
+ {slug:'bmw-x6-grey',name:'BMW X6',color:'Space Grey',badge:'X6',day:400,fourHour:null,weekly:2240,unit:'day',hp:'375',zero:'4.7s',top:'155 mph',seats:5,drive:'AWD',engine:'3.0L Turbo I6',deposit:'$1,000',miles:'150 mi/day',img:null,loc:'Puerto Rico',desc:'Coupe-styled X6 in metallic grey — sculpted roofline, twin-turbo inline-six punch, and a driver-focused cabin that turns heads across the island.'},
+ {slug:'bmw-x1-white',name:'BMW X1',color:'Alpine White',badge:'X1',day:250,fourHour:null,weekly:1400,unit:'day',hp:'241',zero:'6.2s',top:'143 mph',seats:5,drive:'AWD',engine:'2.0L Turbo I4',deposit:'$750',miles:'200 mi/day',img:null,loc:'Puerto Rico',desc:'Agile X1 in crisp Alpine White — nimble, efficient, and premium inside. The ideal compact luxury SUV for cruising San Juan and beyond.'}
 ];
 let current=null;
 function card(c){
-  const photo=c.pending?'<div class="pending">Photos pending</div>':'<img loading="lazy" src="'+LIVE+c.img+'" alt="'+c.name+'">';
+  const photo=c.pending?'<div class="pending">Photos pending</div>':'<img loading="lazy" src="'+LIVE+c.slug+'.webp" alt="'+c.name+'">';
   const priceLbl='$'+c.day.toLocaleString()+' <span>/ '+c.unit+'</span>';
   return '<article class="card" onclick="openM(\''+c.slug+'\')"><div class="photo">'+photo+'<span class="badge">'+c.badge+'</span></div>'
     +'<div class="cbody"><div class="cname">'+c.name+'</div><div class="cmeta">'+c.color+'</div>'
@@ -330,7 +330,7 @@ function pickLoc(loc){show(loc);document.getElementById('fleet').scrollIntoView(
 function bookCar(){ if(!current) return; var l=document.getElementById('vbook-'+current.slug); if(l){ l.click(); } }
 function openM(slug){
   const c=cars.find(x=>x.slug===slug); current=c;
-  document.getElementById('mImg').innerHTML=c.pending?'<div class="pending2">Photos pending</div>':'<img class="hero-img" src="'+LIVE+c.img+'" alt="'+c.name+'">';
+  document.getElementById('mImg').innerHTML=c.pending?'<div class="pending2">Photos pending</div>':'<img class="hero-img" src="'+LIVE+c.slug+'.webp" alt="'+c.name+'">';
   document.getElementById('mName').textContent=c.name;
   document.getElementById('mSub').textContent=c.color;
   const rates=[['Day','$'+c.day.toLocaleString()+(c.unit==='hr'?'/hr':'')]];
