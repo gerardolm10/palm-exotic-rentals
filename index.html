@@ -352,6 +352,6 @@ document.getElementById('prCount').textContent=cars.filter(c=>c.loc==='Puerto Ri
 // Static per-car Valara links (present at load so links.js wires them exactly like the live site)
 document.body.insertAdjacentHTML('beforeend','<div style="position:absolute;left:-9999px;top:0" aria-hidden="true">'+cars.map(function(c){var u=valaraUrl(c.slug);return '<a id="vbook-'+c.slug+'" href="'+u+'" data-valara-url="'+u+'" target="_blank" rel="noopener">book</a>';}).join('')+'</div>');
 </script>
-<script src="https://api.valara.io/api/v1/public/iframes/links.js"></script>
+<script src="https://api.valara.io/api/v1/public/iframes/links.js?button_color=%23000000&button_text_color=%23FFFFFF&sig=eW1LdjJmU2E3MlIxRlNVcFBwMWkydk5MZ2NIS1hEVVhOWkxBUE52WTJkQ2xRWHBWY2RFUmxkRHZWbk5sU1R6LzFoc3F2b0NxMGs0b2d0aENxc2xrR1JTN21weDBIYWpiMUZveDlDd2trTldMSjZYNVk2Z1gxQW5DMm5tRGFrQnltT3lISzdueGh0SzdCQnUwMHVrTk9aRUNORzBhVHgwak45azhLMDdVZzZWakw0UDNlU3FIeCtESkY2WnpoUFhFem9GazhIVjZxWXgxNFFLQUVEYjl4bjZCblhRWHRzdjZjZVM2LS1GUG1nSDUzWG1XOXRzcGtGLS1zemlSRCs3ZzdRc0R6eXdOaWkwS2lBPT0"></script>
 </body>
 </html>
