@@ -311,7 +311,7 @@ var PIN='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d
 function fcard(c){
   const photo=c.pending?'<div class="pending">Photos pending</div>':'<img loading="lazy" src="'+LIVE+c.slug+'.webp" alt="'+c.name+'">';
   const priceLbl='$'+c.day.toLocaleString()+' <span>/ '+c.unit+'</span>';
-  return '<a class="card" href="/'+SHORT[c.slug]+'"><div class="photo">'+photo+'<span class="badge">'+c.badge+'</span><span class="locpill">'+PIN+locAbbr(c.loc)+'</span></div>'
+  return '<a class="card" href="/'+SHORT[c.slug]+'"><div class="photo">'+photo+'<span class="locpill">'+PIN+locAbbr(c.loc)+'</span></div>'
     +'<div class="cbody"><div class="cname">'+c.name+'</div><div class="cmeta">'+c.color+'</div>'
     +'<div class="specs"><div><b>'+c.hp+'</b>hp</div><div><b>'+c.zero+'</b>0–60</div><div><b>'+c.seats+'</b>seats</div></div>'
     +'<div class="cfoot"><div class="price">'+priceLbl+'</div><button class="book">View</button></div></div></a>';
