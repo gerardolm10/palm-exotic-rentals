@@ -30,6 +30,7 @@
   .brand .mark{width:34px;height:34px;border:2px solid #fff;border-radius:9px;display:grid;place-items:center;font-size:16px}
   .navlinks{display:flex;gap:26px;font-size:14px;font-weight:500;color:rgba(255,255,255,.9)}
   .navlinks a:hover{color:#fff}
+  .soonpill{font-size:9px;font-weight:800;background:var(--blue2);color:#08121e;padding:2px 7px;border-radius:999px;margin-left:6px;vertical-align:middle;text-transform:uppercase;letter-spacing:.5px}
   @media(max-width:820px){.navlinks{display:none}}
   .hero-inner{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px 0 80px}
   .eyebrow{letter-spacing:4px;font-size:12px;font-weight:600;color:var(--blue2);text-transform:uppercase;margin-bottom:18px}
@@ -143,7 +144,7 @@
   <div class="wrap" style="width:100%"><nav>
     <div class="brand"><span class="mark">◇</span> <div>PALM EXOTIC RENTALS<small>FEEL THE LUXURY</small></div></div>
     <div class="navright">
-      <div class="navlinks"><a href="#fleet">Fleet</a><a href="#chauffeur">Chauffeur</a><a href="#why">About</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
+      <div class="navlinks"><a href="#fleet">Fleet</a><a href="#" onclick="return false" style="cursor:default">Villas<span class="soonpill">Soon</span></a><a href="#chauffeur">Chauffeur</a><a href="#why">About</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
       <button class="btn" onclick="document.getElementById('locations').scrollIntoView({behavior:'smooth'})">Book Now</button>
     </div>
   </nav></div>
@@ -266,7 +267,7 @@
       <div class="rates" id="mRates"></div>
       <div class="specgrid" id="mSpecs"></div>
       <p class="desc" id="mDesc"></p>
-      <a class="booknow" id="mBook" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none">Book this vehicle</a>
+      <button class="booknow" onclick="bookCar()">Book this vehicle</button>
       <div class="bookmsg" id="mBookMsg"></div>
     </div>
   </div>
@@ -326,6 +327,7 @@ function show(loc){
   document.getElementById('miamiEmpty').style.display=(loc==='Miami'&&!list.length)?'block':'none';
 }
 function pickLoc(loc){show(loc);document.getElementById('fleet').scrollIntoView({behavior:'smooth'});}
+function bookCar(){ if(!current) return; var l=document.getElementById('vbook-'+current.slug); if(l){ l.click(); } }
 function openM(slug){
   const c=cars.find(x=>x.slug===slug); current=c;
   document.getElementById('mImg').innerHTML=c.pending?'<div class="pending2">Photos pending</div>':'<img class="hero-img" src="'+LIVE+c.img+'" alt="'+c.name+'">';
@@ -338,8 +340,6 @@ function openM(slug){
   const specs=[['Horsepower',c.hp+' hp'],['0–60',c.zero],['Top Speed',c.top],['Seats',c.seats],['Drivetrain',c.drive],['Engine',c.engine],['Deposit',c.deposit],['Mileage',c.miles]];
   document.getElementById('mSpecs').innerHTML=specs.map(s=>'<div class="spec"><small>'+s[0]+'</small><b>'+s[1]+'</b></div>').join('');
   document.getElementById('mDesc').textContent=c.desc;
-  const vu=valaraUrl(c.slug), mb=document.getElementById('mBook');
-  mb.href=vu; mb.setAttribute('data-valara-url',vu);
   const known=!!VALARA_UUIDS[c.slug], msg=document.getElementById('mBookMsg');
   msg.style.display=known?'none':'block';
   msg.textContent='Not in Valara yet — “Book” opens your full catalog. Add '+c.name+' in Valara to enable direct booking.';
@@ -349,6 +349,8 @@ function closeM(){document.getElementById('modal').classList.remove('open')}
 function doBook(){document.getElementById('mBookMsg').style.display='block'}
 show('Puerto Rico');
 document.getElementById('prCount').textContent=cars.filter(c=>c.loc==='Puerto Rico').length+' Cars';
+// Static per-car Valara links (present at load so links.js wires them exactly like the live site)
+document.body.insertAdjacentHTML('beforeend','<div style="position:absolute;left:-9999px;top:0" aria-hidden="true">'+cars.map(function(c){var u=valaraUrl(c.slug);return '<a id="vbook-'+c.slug+'" href="'+u+'" data-valara-url="'+u+'" target="_blank" rel="noopener">book</a>';}).join('')+'</div>');
 </script>
 <script src="https://api.valara.io/api/v1/public/iframes/links.js"></script>
 </body>
