@@ -161,14 +161,13 @@
     <p>Hand-picked exotics + premium SUVs. Delivered anywhere — hotel, airport, your front door.</p>
     <div class="cta"><button class="btn" onclick="document.getElementById('locations').scrollIntoView({behavior:'smooth'})">Browse the Fleet</button><button class="ghost" onclick="window.open('https://wa.me/19392417326','_blank')">Message Us</button></div>
   </div>
-  <div class="swapnote">Hero photo — swap for any image you like</div>
 </section>
 
 <section class="sec locsec" id="locations"><div class="wrap">
   <div class="sechead"><h2>Where Are You Driving?</h2><p>Pick your location to explore the fleet</p></div>
   <div class="loccards">
     <div class="loccard" onclick="pickLoc('Puerto Rico')">
-      <div class="bg" style="background-image:url('https://go.palmexoticrentals.com/images/hero-bg.webp')"></div>
+      <div class="bg" style="background-image:url('hero-bg.webp')"></div>
       <div class="ov"></div>
       <span class="locbadge" id="prCount">Puerto Rico</span>
       <h3>Puerto Rico</h3>
@@ -197,7 +196,6 @@
     <h3>Miami fleet — coming next</h3>
     <p>Send your Miami car list and photos and they'll appear here, same format.</p>
   </div>
-  <div class="note">Preview • Colors and hero now match your live site. Photos are pulled live from your current site to show layout; X6, X1 &amp; Escalade Sport (2) show “photos pending.” Tap a car to see the detail + booking view.</div>
 </div></section>
 
 <!-- WHY US -->
@@ -300,7 +298,7 @@ const VALARA_UUIDS={
  'bmw-x1-white':'16818b3d-a933-4917-9419-96d6d4b1ab77'
 };
 function valaraUrl(slug){return VALARA_UUIDS[slug]?'https://app.valara.io/iframe/products/'+VALARA_UUIDS[slug]:'https://app.valara.io/iframe/products';}
-document.documentElement.style.setProperty('--hero', "url('"+LIVE+"images/hero-bg.webp')");
+document.documentElement.style.setProperty('--hero', "url('"+LIVE+"hero-bg.webp')");
 const cars=[
  {slug:'lamborghini-urus-baby-blue',name:'Lamborghini Urus S',color:'Baby Blue',badge:'S',day:1200,fourHour:600,weekly:6720,unit:'day',hp:'657',zero:'3.1s',top:'190 mph',seats:5,drive:'AWD',engine:'4.0L Twin-Turbo V8',deposit:'$2,000',miles:'120 mi/day',img:'images/palm/lamborghini-urus-s-baby-blue/p0.webp',loc:'Puerto Rico',desc:'The Urus in baby blue — soft hue, hard horsepower. 657 thoroughbred ponies under that tropical-friendly paint.'},
  {slug:'lamborghini-urus-yellow',name:'Lamborghini Urus',color:'Giallo Auge',badge:'Giallo',day:1000,fourHour:500,weekly:5600,unit:'day',hp:'657',zero:'3.1s',top:'190 mph',seats:5,drive:'AWD',engine:'4.0L Twin-Turbo V8',deposit:'$2,000',miles:'120 mi/day',img:'images/palm/lamborghini-urus-blue/p0.webp',loc:'Puerto Rico',desc:'San Juan-spec Urus in tropical yellow. 657 horsepower of bull on coastal highways.'},
