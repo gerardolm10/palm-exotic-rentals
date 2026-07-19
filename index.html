@@ -66,6 +66,8 @@
   .photo img{width:100%;height:100%;object-fit:cover;display:block}
   .photo .pending{position:absolute;inset:0;display:grid;place-items:center;color:#9fb0c2;font-size:13px;font-weight:500;background:repeating-linear-gradient(45deg,#eef3f8,#eef3f8 10px,#e6edf4 10px,#e6edf4 20px)}
   .badge{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.92);color:var(--blue);font-size:11px;font-weight:700;letter-spacing:.4px;padding:5px 11px;border-radius:999px;text-transform:uppercase}
+  .locpill{position:absolute;top:12px;right:12px;background:rgba(10,22,40,.82);color:#fff;font-size:11px;font-weight:700;letter-spacing:.4px;padding:5px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:4px;backdrop-filter:blur(2px)}
+  .locpill svg{width:11px;height:11px;display:block}
   .cbody{padding:16px 16px 18px}
   .cname{font-size:18px;font-weight:700}
   .cmeta{color:var(--muted);font-size:13px;margin-top:2px}
@@ -304,10 +306,12 @@ let current=null;
 // Short custom link per car (Most Popular cards → /urus-s, /g63, ...)
 const SHORT={'lamborghini-urus-baby-blue':'urus-s','lamborghini-urus-yellow':'urus-yellow','mercedes-amg-g63-matte-black':'g63','chevrolet-corvette-z06':'corvette','cadillac-escalade-esv-sport-2026':'escalade-2026','tesla-cybertruck':'cybertruck','cadillac-escalade-black-esv-sport':'escalade-sport','cadillac-escalade-sport-2':'escalade-2','mercedes-gle-53-amg-red':'gle-53','mercedes-amg-gle-53-coupe':'gle-coupe','bmw-x7-grey':'x7','cadillac-escalade-chauffeur':'escalade-chauffeur','bmw-x6-grey':'x6','bmw-x1-white':'x1'};
 const POPULAR=['lamborghini-urus-baby-blue','mercedes-amg-g63-matte-black','chevrolet-corvette-z06','cadillac-escalade-esv-sport-2026'];
+function locAbbr(loc){return loc==='Puerto Rico'?'PR':(loc==='Miami'?'MIA':loc);}
+var PIN='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
 function fcard(c){
   const photo=c.pending?'<div class="pending">Photos pending</div>':'<img loading="lazy" src="'+LIVE+c.slug+'.webp" alt="'+c.name+'">';
   const priceLbl='$'+c.day.toLocaleString()+' <span>/ '+c.unit+'</span>';
-  return '<a class="card" href="/'+SHORT[c.slug]+'"><div class="photo">'+photo+'<span class="badge">'+c.badge+'</span></div>'
+  return '<a class="card" href="/'+SHORT[c.slug]+'"><div class="photo">'+photo+'<span class="badge">'+c.badge+'</span><span class="locpill">'+PIN+locAbbr(c.loc)+'</span></div>'
     +'<div class="cbody"><div class="cname">'+c.name+'</div><div class="cmeta">'+c.color+'</div>'
     +'<div class="specs"><div><b>'+c.hp+'</b>hp</div><div><b>'+c.zero+'</b>0–60</div><div><b>'+c.seats+'</b>seats</div></div>'
     +'<div class="cfoot"><div class="price">'+priceLbl+'</div><button class="book">View</button></div></div></a>';
