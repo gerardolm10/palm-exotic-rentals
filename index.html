@@ -60,7 +60,7 @@
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:34px 0 40px}
   @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:600px){.grid{grid-template-columns:1fr}}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s;box-shadow:0 2px 10px rgba(10,22,40,.04)}
+  .card{display:block;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s;box-shadow:0 2px 10px rgba(10,22,40,.04)}
   .card:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(10,22,40,.12)}
   .photo{position:relative;aspect-ratio:16/11;background:#eef3f8;overflow:hidden}
   .photo img{width:100%;height:100%;object-fit:cover;display:block}
@@ -158,10 +158,10 @@
 
 <section class="hero" id="top">
   <div class="wrap" style="width:100%"><nav>
-    <div class="brand"><img class="brandlogo" src="logo-emblem.png" alt="Palm Exotic Rentals emblem"> <div>PALM EXOTIC RENTALS<small>FEEL THE LUXURY</small></div></div>
+    <a class="brand" href="/"><img class="brandlogo" src="/logo-emblem.png" alt="Palm Exotic Rentals emblem"> <div>PALM EXOTIC RENTALS<small>FEEL THE LUXURY</small></div></a>
     <div class="navright">
-      <div class="navlinks"><a href="#fleet">Fleet</a><a href="#" onclick="return false" style="cursor:default">Villas<span class="soonpill">Soon</span></a><a href="#chauffeur">Chauffeur</a><a href="#why">About</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
-      <button class="btn" onclick="document.getElementById('locations').scrollIntoView({behavior:'smooth'})">Book Now</button>
+      <div class="navlinks"><a href="/vehicles">Fleet</a><a href="#" onclick="return false" style="cursor:default">Villas<span class="soonpill">Soon</span></a><a href="#chauffeur">Chauffeur</a><a href="#why">About</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
+      <button class="btn" onclick="location.href='/vehicles'">Book Now</button>
       <button class="navtoggle" aria-label="Menu" onclick="document.querySelector('.navlinks').classList.toggle('open')">☰</button>
     </div>
   </nav></div>
@@ -169,42 +169,37 @@
     <div class="eyebrow">San Juan · Puerto Rico</div>
     <h1>Drive <em>Luxury.</em> Book Your <em>Dream</em> Car.</h1>
     <p>Hand-picked exotics + premium SUVs. Delivered anywhere — hotel, airport, your front door.</p>
-    <div class="cta"><button class="btn" onclick="document.getElementById('locations').scrollIntoView({behavior:'smooth'})">Browse the Fleet</button><button class="ghost" onclick="window.open('https://wa.me/19392417326','_blank')">Message Us</button></div>
+    <div class="cta"><button class="btn" onclick="location.href='/vehicles'">Browse the Fleet</button><button class="ghost" onclick="window.open('https://wa.me/19392417326','_blank')">Message Us</button></div>
   </div>
 </section>
 
 <section class="sec locsec" id="locations"><div class="wrap">
   <div class="sechead"><h2>Where Are You Driving?</h2><p>Pick your location to explore the fleet</p></div>
   <div class="loccards">
-    <div class="loccard" onclick="pickLoc('Puerto Rico')">
-      <div class="bg" style="background-image:url('pr-banner.webp')"></div>
+    <div class="loccard" onclick="location.href='/vehicles'">
+      <div class="bg" style="background-image:url('/pr-banner.webp')"></div>
       <div class="ov"></div>
       <span class="locbadge" id="prCount">Puerto Rico</span>
       <h3>Puerto Rico</h3>
       <p>San Juan &amp; island-wide delivery</p>
       <span class="go">View Puerto Rico fleet →</span>
     </div>
-    <div class="loccard" onclick="pickLoc('Miami')">
+    <div class="loccard" style="cursor:default">
       <div class="bg" style="background:linear-gradient(135deg,#2a5298,#e96443)"></div>
       <div class="ov"></div>
       <span class="locbadge">Coming Soon</span>
       <h3>Miami</h3>
       <p>Exotics in the Magic City</p>
-      <span class="go">View Miami fleet →</span>
+      <span class="go">Coming soon →</span>
     </div>
   </div>
 </div></section>
 
-<section class="fleet" id="fleet"><div class="wrap">
-  <div class="sechead"><h2>Our Fleet</h2><p>Choose your location, then tap any car for full details</p></div>
-  <div class="toggle">
-    <button id="tbPR" class="active" onclick="show('Puerto Rico')">Puerto Rico</button>
-    <button id="tbMIA" onclick="show('Miami')">Miami</button>
-  </div>
-  <div id="grid" class="grid"></div>
-  <div id="miamiEmpty" class="miami-empty" style="display:none">
-    <h3>Miami fleet — coming next</h3>
-    <p>Send your Miami car list and photos and they'll appear here, same format.</p>
+<section class="fleet" id="popular"><div class="wrap">
+  <div class="sechead"><h2>Most Popular</h2><p>Our most-booked vehicles — tap to see photos, specs &amp; book</p></div>
+  <div id="popgrid" class="grid"></div>
+  <div style="text-align:center;margin-top:6px">
+    <a class="btn" href="/vehicles" style="display:inline-block;padding:14px 30px">View all vehicles →</a>
   </div>
 </div></section>
 
@@ -229,7 +224,7 @@
 <!-- CHAUFFEUR -->
 <section class="sec" id="chauffeur" style="padding-top:0"><div class="wrap"><div class="chauffeur">
   <div><h3>Rather Be Driven?</h3><p>Professional chauffeur service from <strong>$125/hour</strong> in a Cadillac Escalade — events, nights out, or any occasion. 2-hour minimum in the metro area (4-hour minimum outside the metro area), and airport &amp; point-to-point transfers available.</p></div>
-  <button class="btn" style="white-space:nowrap" onclick="var l=document.getElementById('vbook-cadillac-escalade-chauffeur');if(l)l.click();">Book a Chauffeur</button>
+  <button class="btn" style="white-space:nowrap" onclick="location.href='/escalade-chauffeur'">Book a Chauffeur</button>
 </div></div></section>
 
 <!-- TESTIMONIALS -->
@@ -268,25 +263,8 @@
 
 <footer><div class="wrap">© Palm Exotic Rentals · Puerto Rico &amp; Miami · Feel the Luxury</div></footer>
 
-<!-- Detail + booking modal -->
-<div class="modal" id="modal" onclick="if(event.target===this)closeM()">
-  <div class="sheet" style="position:relative">
-    <button class="close" onclick="closeM()">×</button>
-    <div id="mImg"></div>
-    <div class="body">
-      <h3 id="mName"></h3>
-      <div class="sub" id="mSub"></div>
-      <div class="rates" id="mRates"></div>
-      <div class="specgrid" id="mSpecs"></div>
-      <p class="desc" id="mDesc"></p>
-      <button class="booknow" onclick="bookCar()">Book this vehicle</button>
-      <div class="bookmsg" id="mBookMsg"></div>
-    </div>
-  </div>
-</div>
-
 <script>
-const LIVE='';
+const LIVE='/';
 const PC={"bmw-x1-white":8,"bmw-x6-grey":8,"bmw-x7-grey":8,"cadillac-escalade-black-esv-sport":8,"cadillac-escalade-chauffeur":8,"cadillac-escalade-esv-sport-2026":8,"chevrolet-corvette-z06":8,"lamborghini-urus-baby-blue":8,"lamborghini-urus-yellow":8,"mercedes-amg-g63-matte-black":8,"mercedes-amg-gle-53-coupe":8,"mercedes-gle-53-amg-red":8,"tesla-cybertruck":8};
 const VALARA_UUIDS={
  'lamborghini-urus-baby-blue':'9fd04041-04e7-4b1d-82c8-581d8ee5d55c',
@@ -323,13 +301,16 @@ const cars=[
  {slug:'bmw-x1-white',name:'BMW X1',color:'Alpine White',badge:'X1',day:250,fourHour:null,weekly:1400,unit:'day',hp:'241',zero:'6.2s',top:'143 mph',seats:5,drive:'AWD',engine:'2.0L Turbo I4',deposit:'$750',miles:'200 mi/day',img:null,loc:'Puerto Rico',desc:'Agile X1 in crisp Alpine White — nimble, efficient, and premium inside. The ideal compact luxury SUV for cruising San Juan and beyond.'}
 ];
 let current=null;
-function card(c){
+// Short custom link per car (Most Popular cards → /urus-s, /g63, ...)
+const SHORT={'lamborghini-urus-baby-blue':'urus-s','lamborghini-urus-yellow':'urus-yellow','mercedes-amg-g63-matte-black':'g63','chevrolet-corvette-z06':'corvette','cadillac-escalade-esv-sport-2026':'escalade-2026','tesla-cybertruck':'cybertruck','cadillac-escalade-black-esv-sport':'escalade-sport','cadillac-escalade-sport-2':'escalade-2','mercedes-gle-53-amg-red':'gle-53','mercedes-amg-gle-53-coupe':'gle-coupe','bmw-x7-grey':'x7','cadillac-escalade-chauffeur':'escalade-chauffeur','bmw-x6-grey':'x6','bmw-x1-white':'x1'};
+const POPULAR=['lamborghini-urus-baby-blue','mercedes-amg-g63-matte-black','chevrolet-corvette-z06','cadillac-escalade-esv-sport-2026'];
+function fcard(c){
   const photo=c.pending?'<div class="pending">Photos pending</div>':'<img loading="lazy" src="'+LIVE+c.slug+'.webp" alt="'+c.name+'">';
   const priceLbl='$'+c.day.toLocaleString()+' <span>/ '+c.unit+'</span>';
-  return '<article class="card" onclick="openM(\''+c.slug+'\')"><div class="photo">'+photo+'<span class="badge">'+c.badge+'</span></div>'
+  return '<a class="card" href="/'+SHORT[c.slug]+'"><div class="photo">'+photo+'<span class="badge">'+c.badge+'</span></div>'
     +'<div class="cbody"><div class="cname">'+c.name+'</div><div class="cmeta">'+c.color+'</div>'
     +'<div class="specs"><div><b>'+c.hp+'</b>hp</div><div><b>'+c.zero+'</b>0–60</div><div><b>'+c.seats+'</b>seats</div></div>'
-    +'<div class="cfoot"><div class="price">'+priceLbl+'</div><button class="book">Details</button></div></div></article>';
+    +'<div class="cfoot"><div class="price">'+priceLbl+'</div><button class="book">View</button></div></div></a>';
 }
 function show(loc){
   document.getElementById('tbPR').classList.toggle('active',loc==='Puerto Rico');
@@ -347,7 +328,7 @@ function galSet(i){if(!galPhotos.length)return;galIdx=(i%galPhotos.length+galPho
 function galNav(d){galSet(galIdx+d);}
 document.addEventListener('touchstart',function(e){window.__sx=(e.target.closest&&e.target.closest('#mgal'))?e.touches[0].clientX:null;},{passive:true});
 document.addEventListener('touchend',function(e){if(window.__sx==null)return;var dx=e.changedTouches[0].clientX-window.__sx;if(Math.abs(dx)>40)galNav(dx<0?1:-1);window.__sx=null;},{passive:true});
-document.addEventListener('keydown',function(e){if(!document.getElementById('modal').classList.contains('open'))return;if(e.key==='ArrowLeft')galNav(-1);if(e.key==='ArrowRight')galNav(1);});
+document.addEventListener('keydown',function(e){var _m=document.getElementById('modal');if(!_m||!_m.classList.contains('open'))return;if(e.key==='ArrowLeft')galNav(-1);if(e.key==='ArrowRight')galNav(1);});
 function openM(slug){
   const c=cars.find(x=>x.slug===slug); current=c;
   (function(){
@@ -376,12 +357,9 @@ function openM(slug){
 }
 function closeM(){document.getElementById('modal').classList.remove('open')}
 function doBook(){document.getElementById('mBookMsg').style.display='block'}
-show('Puerto Rico');
+var popCars=POPULAR.map(function(s){return cars.find(function(c){return c.slug===s;});}).filter(Boolean);
+document.getElementById('popgrid').innerHTML=popCars.map(fcard).join('');
 document.querySelectorAll('.navlinks a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('.navlinks').classList.remove('open');});});
-document.getElementById('prCount').textContent=cars.filter(c=>c.loc==='Puerto Rico').length+' Cars';
-// Static per-car Valara links (present at load so links.js wires them exactly like the live site)
-document.body.insertAdjacentHTML('beforeend','<div style="position:absolute;left:-9999px;top:0" aria-hidden="true">'+cars.map(function(c){var u=valaraUrl(c.slug);return '<a id="vbook-'+c.slug+'" href="'+u+'" data-valara-url="'+u+'" target="_blank" rel="noopener">book</a>';}).join('')+'</div>');
 </script>
-<script src="https://api.valara.io/api/v1/public/iframes/links.js?button_color=%23000000&button_text_color=%23FFFFFF&sig=eW1LdjJmU2E3MlIxRlNVcFBwMWkydk5MZ2NIS1hEVVhOWkxBUE52WTJkQ2xRWHBWY2RFUmxkRHZWbk5sU1R6LzFoc3F2b0NxMGs0b2d0aENxc2xrR1JTN21weDBIYWpiMUZveDlDd2trTldMSjZYNVk2Z1gxQW5DMm5tRGFrQnltT3lISzdueGh0SzdCQnUwMHVrTk9aRUNORzBhVHgwak45azhLMDdVZzZWakw0UDNlU3FIeCtESkY2WnpoUFhFem9GazhIVjZxWXgxNFFLQUVEYjl4bjZCblhRWHRzdjZjZVM2LS1GUG1nSDUzWG1XOXRzcGtGLS1zemlSRCs3ZzdRc0R6eXdOaWkwS2lBPT0"></script>
 </body>
 </html>

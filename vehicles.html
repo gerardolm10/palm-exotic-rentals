@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Fleet — Palm Exotic Rentals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --bg2:#f4f8fc; --card:#ffffff; --line:#e4eaf1;
+    --text:#0a1628; --muted:#5b6b80; --blue:#1e8fcf; --blue2:#3eb4f5; --navy:#0a1628;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 22px}
+  .btn{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;padding:12px 22px;border-radius:999px;font-weight:700;font-size:14px;border:none;cursor:pointer;box-shadow:0 6px 18px rgba(30,143,207,.35)}
+  .btn:hover{filter:brightness(1.06)}
+
+  /* COMPACT PAGE HEADER */
+  .pagehead{background:linear-gradient(120deg,#0a1628,#123a5c);color:#fff}
+  .pagehead nav{display:flex;align-items:center;justify-content:space-between;height:80px;position:relative;z-index:3}
+  .brand{font-weight:800;letter-spacing:.5px;font-size:16px;display:flex;align-items:center;gap:9px}
+  .navright{display:flex;align-items:center;gap:28px}
+  .brand small{display:block;font-size:9px;letter-spacing:3px;color:rgba(255,255,255,.7);font-weight:600}
+  .brand .brandlogo{height:34px;width:auto;display:block}
+  @media(max-width:820px){.brand .brandlogo{height:30px}.brand{font-size:15px}}
+  .navlinks{display:flex;gap:26px;font-size:14px;font-weight:500;color:rgba(255,255,255,.9)}
+  .navlinks a:hover{color:#fff}
+  .soonpill{font-size:9px;font-weight:800;background:var(--blue2);color:#08121e;padding:2px 7px;border-radius:999px;margin-left:6px;vertical-align:middle;text-transform:uppercase;letter-spacing:.5px}
+  .promobar{display:none}
+  @media(max-width:820px){.promobar{display:flex;align-items:center;justify-content:center;gap:7px;background:linear-gradient(90deg,var(--blue),var(--blue2));color:#fff;font-size:12.5px;font-weight:700;padding:9px 12px;letter-spacing:.4px;cursor:pointer}.promobar .pbtag{background:rgba(255,255,255,.22);border-radius:999px;padding:1px 8px;font-size:10px;text-transform:uppercase;letter-spacing:.6px}}
+  .navtoggle{display:none;background:none;border:0;color:#fff;font-size:26px;line-height:1;cursor:pointer;padding:4px 6px}
+  @media(max-width:820px){
+    .navtoggle{display:block}
+    .navlinks{display:none}
+    .navlinks.open{display:flex;flex-direction:column;position:absolute;top:70px;right:0;background:rgba(10,22,40,.97);padding:18px 22px;border-radius:14px;gap:18px;min-width:190px;z-index:30;box-shadow:0 16px 40px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12)}
+  }
+  .phtitle{padding:10px 0 34px;text-align:center}
+  .phtitle .eyebrow{letter-spacing:4px;font-size:12px;font-weight:600;color:var(--blue2);text-transform:uppercase;margin-bottom:12px}
+  .phtitle h1{font-size:42px;letter-spacing:-1px;font-weight:800}
+  .phtitle p{color:#b9cbe0;margin-top:8px}
+  @media(max-width:600px){.phtitle h1{font-size:30px}}
+
+  /* FLEET */
+  section.fleet{padding:36px 0 40px;background:var(--bg)}
+  .toggle{display:flex;gap:6px;justify-content:center;margin:4px 0 8px}
+  .toggle button{background:var(--bg2);border:1px solid var(--line);color:var(--muted);padding:11px 26px;border-radius:999px;font-weight:600;cursor:pointer;font-size:14px;font-family:inherit}
+  .toggle button.active{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(30,143,207,.3)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:28px 0 40px}
+  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s;box-shadow:0 2px 10px rgba(10,22,40,.04)}
+  .card:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(10,22,40,.12)}
+  .photo{position:relative;aspect-ratio:16/11;background:#eef3f8;overflow:hidden}
+  .photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .photo .pending{position:absolute;inset:0;display:grid;place-items:center;color:#9fb0c2;font-size:13px;font-weight:500;background:repeating-linear-gradient(45deg,#eef3f8,#eef3f8 10px,#e6edf4 10px,#e6edf4 20px)}
+  .badge{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.92);color:var(--blue);font-size:11px;font-weight:700;letter-spacing:.4px;padding:5px 11px;border-radius:999px;text-transform:uppercase}
+  .cbody{padding:16px 16px 18px}
+  .cname{font-size:18px;font-weight:700}
+  .cmeta{color:var(--muted);font-size:13px;margin-top:2px}
+  .specs{display:flex;gap:16px;margin:14px 0;color:var(--muted);font-size:12px;flex-wrap:wrap}
+  .specs b{color:var(--text);font-weight:700;display:block;font-size:15px}
+  .cfoot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:14px}
+  .price{font-size:21px;font-weight:800}
+  .price span{font-size:12px;color:var(--muted);font-weight:500}
+  .book{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;padding:9px 18px;border-radius:999px;font-weight:700;font-size:13px;border:none;cursor:pointer}
+  .miami-empty{border:1px dashed var(--line);border-radius:16px;padding:60px 20px;text-align:center;color:var(--muted);margin:34px 0}
+  .miami-empty h3{color:var(--text);font-size:20px;margin-bottom:8px}
+  footer{background:var(--navy);color:#9fb0c2;padding:40px 0;font-size:13px;text-align:center;margin-top:30px}
+
+  /* MODAL (car detail + booking) */
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(8,16,30,.6);backdrop-filter:blur(3px);display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow:auto}
+  .modal.open{display:flex}
+  .sheet{background:#fff;max-width:820px;width:100%;border-radius:18px;overflow:hidden}
+  .sheet .hero-img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#eef3f8}
+  .sheet .pending2{width:100%;aspect-ratio:16/9;display:grid;place-items:center;color:#9fb0c2;background:repeating-linear-gradient(45deg,#eef3f8,#eef3f8 12px,#e6edf4 12px,#e6edf4 24px)}
+  .sheet .mgal{position:relative}
+  .sheet .mgal-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:none;background:rgba(10,22,40,.5);color:#fff;font-size:24px;line-height:1;cursor:pointer;display:grid;place-items:center;transition:background .2s;z-index:2}
+  .sheet .mgal-nav:hover{background:rgba(10,22,40,.82)}
+  .sheet .mgal-nav.prev{left:10px}.sheet .mgal-nav.next{right:10px}
+  .sheet .mgal-dots{position:absolute;left:0;right:0;bottom:10px;display:flex;gap:6px;justify-content:center;z-index:2;flex-wrap:wrap;padding:0 40px}
+  .sheet .mgal-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.55);cursor:pointer;transition:transform .2s,background .2s}
+  .sheet .mgal-dot.active{background:#fff;transform:scale(1.25)}
+  .sheet .body{padding:24px 26px 28px}
+  .sheet h3{font-size:26px;font-weight:800;letter-spacing:-.5px}
+  .sheet .sub{color:var(--muted);margin:2px 0 16px}
+  .specgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+  @media(max-width:600px){.specgrid{grid-template-columns:repeat(2,1fr)}}
+  .spec{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:12px}
+  .spec small{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+  .spec b{display:block;font-size:16px;margin-top:3px}
+  .desc{color:#33465c;margin:6px 0 18px}
+  .rates{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+  .rate{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 16px}
+  .rate small{color:var(--muted);font-size:11px;display:block}
+  .rate b{font-size:18px;color:var(--blue)}
+  .booknow{width:100%;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border:none;padding:15px;border-radius:12px;font-weight:700;font-size:16px;cursor:pointer;font-family:inherit}
+  .copylink{width:100%;margin-top:10px;background:#fff;border:1px solid var(--line);color:var(--blue);padding:12px;border-radius:12px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px}
+  .copylink:hover{background:var(--bg2)}
+  .close{position:absolute;top:18px;right:20px;background:rgba(255,255,255,.9);border:none;width:38px;height:38px;border-radius:50%;font-size:20px;cursor:pointer;z-index:2}
+  .bookmsg{background:#eaf5fd;border:1px solid #bfe1f5;color:#155a80;padding:12px;border-radius:10px;margin-top:12px;font-size:13px;display:none}
+</style>
+</head>
+<body>
+<div class="promobar" onclick="document.querySelector('.navlinks').classList.add('open');window.scrollTo({top:0,behavior:'smooth'});">🌴 Villas <span class="pbtag">Coming Soon</span> — tap for menu</div>
+
+<header class="pagehead" id="top">
+  <div class="wrap" style="width:100%"><nav>
+    <a class="brand" href="/"><img class="brandlogo" src="/logo-emblem.png" alt="Palm Exotic Rentals emblem"> <div>PALM EXOTIC RENTALS<small>FEEL THE LUXURY</small></div></a>
+    <div class="navright">
+      <div class="navlinks"><a href="/vehicles">Fleet</a><a href="#" onclick="return false" style="cursor:default">Villas<span class="soonpill">Soon</span></a><a href="/#chauffeur">Chauffeur</a><a href="/#why">About</a><a href="/#faq">FAQ</a><a href="/#contact">Contact</a></div>
+      <button class="btn" onclick="location.href='/#contact'">Book Now</button>
+      <button class="navtoggle" aria-label="Menu" onclick="document.querySelector('.navlinks').classList.toggle('open')">☰</button>
+    </div>
+  </nav></div>
+  <div class="wrap phtitle">
+    <div class="eyebrow">San Juan · Puerto Rico</div>
+    <h1>Our Fleet</h1>
+    <p>Tap any car for full details, photos &amp; booking</p>
+  </div>
+</header>
+
+<section class="fleet" id="fleet"><div class="wrap">
+  <div class="toggle">
+    <button id="tbPR" class="active" onclick="show('Puerto Rico')">Puerto Rico</button>
+    <button id="tbMIA" onclick="show('Miami')">Miami</button>
+  </div>
+  <div id="grid" class="grid"></div>
+  <div id="miamiEmpty" class="miami-empty" style="display:none">
+    <h3>Miami fleet — coming next</h3>
+    <p>Exotics in the Magic City are on the way.</p>
+  </div>
+</div></section>
+
+<footer><div class="wrap">© Palm Exotic Rentals · Puerto Rico &amp; Miami · Feel the Luxury</div></footer>
+
+<!-- Detail + booking modal -->
+<div class="modal" id="modal" onclick="if(event.target===this)closeM()">
+  <div class="sheet" style="position:relative">
+    <button class="close" onclick="closeM()">×</button>
+    <div id="mImg"></div>
+    <div class="body">
+      <h3 id="mName"></h3>
+      <div class="sub" id="mSub"></div>
+      <div class="rates" id="mRates"></div>
+      <div class="specgrid" id="mSpecs"></div>
+      <p class="desc" id="mDesc"></p>
+      <button class="booknow" onclick="bookCar()">Book this vehicle</button>
+      <button class="copylink" id="copyBtn" onclick="copyCarLink()">🔗 Copy shareable link</button>
+      <div class="bookmsg" id="mBookMsg"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const LIVE='/';
+const PC={"bmw-x1-white":8,"bmw-x6-grey":8,"bmw-x7-grey":8,"cadillac-escalade-black-esv-sport":8,"cadillac-escalade-chauffeur":8,"cadillac-escalade-esv-sport-2026":8,"chevrolet-corvette-z06":8,"lamborghini-urus-baby-blue":8,"lamborghini-urus-yellow":8,"mercedes-amg-g63-matte-black":8,"mercedes-amg-gle-53-coupe":8,"mercedes-gle-53-amg-red":8,"tesla-cybertruck":8};
+const VALARA_UUIDS={
+ 'lamborghini-urus-baby-blue':'9fd04041-04e7-4b1d-82c8-581d8ee5d55c',
+ 'lamborghini-urus-yellow':'f5a7dd6d-2f63-40ed-94aa-f72faa8fa421',
+ 'mercedes-amg-g63-matte-black':'ba94d74d-635f-4d74-8581-f7c1dfa445e5',
+ 'chevrolet-corvette-z06':'10fd0ced-ffb0-4dca-897b-f2c369dcab78',
+ 'cadillac-escalade-esv-sport-2026':'b4a187e8-1dfe-4d30-8fdd-ddbef752ddc1',
+ 'tesla-cybertruck':'a1ae0789-6436-4ea2-9671-f3f945b83b3d',
+ 'cadillac-escalade-black-esv-sport':'81022731-07cd-4517-a044-f8ec8e158588',
+ 'cadillac-escalade-sport-2':'d26b9b11-2f34-47b8-8f24-813c4a44a75c',
+ 'mercedes-gle-53-amg-red':'6d3e738d-0621-4279-b5b6-ee7bd2d149db',
+ 'mercedes-amg-gle-53-coupe':'8b53fa85-5ebb-4680-9d56-fa59e3db3928',
+ 'bmw-x7-grey':'90198818-8f9e-45f7-8a9b-202ef85684c8',
+ 'cadillac-escalade-chauffeur':'2f51f414-420c-465a-8ba6-e1b1fc58ea78',
+ 'bmw-x6-grey':'f3b7ef9f-03a6-4b56-996e-5759e41b97b1',
+ 'bmw-x1-white':'16818b3d-a933-4917-9419-96d6d4b1ab77'
+};
+function valaraUrl(slug){return VALARA_UUIDS[slug]?'https://app.valara.io/iframe/products/'+VALARA_UUIDS[slug]:'https://app.valara.io/iframe/products';}
+const cars=[
+ {slug:'lamborghini-urus-baby-blue',short:'urus-s',pop:true,name:'Lamborghini Urus S',color:'Baby Blue',badge:'S',day:1200,fourHour:600,weekly:6720,unit:'day',hp:'657',zero:'3.1s',top:'190 mph',seats:5,drive:'AWD',engine:'4.0L Twin-Turbo V8',deposit:'$2,000',miles:'120 mi/day',loc:'Puerto Rico',desc:'The Urus in baby blue — soft hue, hard horsepower. 657 thoroughbred ponies under that tropical-friendly paint.'},
+ {slug:'lamborghini-urus-yellow',short:'urus-yellow',name:'Lamborghini Urus',color:'Giallo Auge',badge:'Giallo',day:1000,fourHour:500,weekly:5600,unit:'day',hp:'657',zero:'3.1s',top:'190 mph',seats:5,drive:'AWD',engine:'4.0L Twin-Turbo V8',deposit:'$2,000',miles:'120 mi/day',loc:'Puerto Rico',desc:'San Juan-spec Urus in tropical yellow. 657 horsepower of bull on coastal highways.'},
+ {slug:'mercedes-amg-g63-matte-black',short:'g63',pop:true,name:'Mercedes-AMG G63',color:'Matte Black',badge:'G-Wagon',day:800,fourHour:400,weekly:4480,unit:'day',hp:'577',zero:'3.9s',top:'190 mph',seats:5,drive:'AWD',engine:'4.0L Twin-Turbo V8',deposit:'$1,500',miles:'120 mi/day',loc:'Puerto Rico',desc:'The icon. Boxed shoulders, side-pipes that bark, matte paint that drinks the sun. Forty years of legend in one switchblade SUV.'},
+ {slug:'chevrolet-corvette-z06',short:'corvette',pop:true,name:'Corvette Z06 3LZ',color:'Torch Red',badge:'Z06',day:700,fourHour:null,weekly:3920,unit:'day',hp:'670',zero:'2.6s',top:'195 mph',seats:2,drive:'RWD',engine:'5.5L Flat-Plane V8',deposit:'$1,500',miles:'150 mi/day',loc:'Puerto Rico',desc:'Corvette Z06 3LZ in Torch Red — flat-plane crank 5.5L V8 spinning to 8,600 rpm. American supercar performance with track-day attitude.'},
+ {slug:'cadillac-escalade-esv-sport-2026',short:'escalade-2026',pop:true,name:'Escalade Black ESV Sport',color:'2026 · Black Raven',badge:'2026',day:550,fourHour:275,weekly:3080,unit:'day',hp:'420',zero:'6.2s',top:'190 mph',seats:7,drive:'AWD',engine:'6.2L V8',deposit:'$1,000',miles:'200 mi/day',loc:'Puerto Rico',desc:'The freshest 2026 Escalade ESV Sport. Updated front fascia, 33-inch curved OLED, Super Cruise on Puerto Rico highways.'},
+ {slug:'tesla-cybertruck',short:'cybertruck',name:'Tesla Cybertruck',color:'Stainless Steel',badge:'All-Electric',day:500,fourHour:null,weekly:2800,unit:'day',hp:'600',zero:'4.1s',top:'190 mph',seats:5,drive:'AWD',engine:'Tri-Motor Electric',deposit:'$1,000',miles:'150 mi/day',loc:'Puerto Rico',desc:'The truck from the future. Stainless steel exoskeleton, bulletproof glass, 845 lb-ft of torque. Your photos will go viral.'},
+ {slug:'cadillac-escalade-black-esv-sport',short:'escalade-sport',name:'Escalade Black ESV Sport',color:'Black Raven',badge:'ESV Sport',day:450,fourHour:225,weekly:2520,unit:'day',hp:'420',zero:'5.7s',top:'190 mph',seats:7,drive:'AWD',engine:'6.2L V8',deposit:'$1,000',miles:'200 mi/day',loc:'Puerto Rico',desc:'ESV Sport-spec — black sport grille, sport rims, V8 power, three rows of room. The way to move a crew.'},
+ {slug:'cadillac-escalade-sport-2',short:'escalade-2',name:'Escalade Sport (2)',color:'Black',badge:'Sport',day:450,fourHour:225,weekly:2520,unit:'day',hp:'420',zero:'5.7s',top:'190 mph',seats:7,drive:'AWD',engine:'6.2L V8',deposit:'$1,000',miles:'200 mi/day',pending:true,loc:'Puerto Rico',desc:'Second Cadillac Escalade Sport — full-size luxury SUV. Three rows, Super Cruise, executive presence.'},
+ {slug:'mercedes-gle-53-amg-red',short:'gle-53',name:'Mercedes-AMG GLE 53',color:'Cardinal Red',badge:'AMG',day:400,fourHour:null,weekly:2240,unit:'day',hp:'429',zero:'5.2s',top:'190 mph',seats:5,drive:'AWD',engine:'3.0L I6 + EQ Boost',deposit:'$1,000',miles:'150 mi/day',loc:'Puerto Rico',desc:'GLE 53 AMG in Cardinal Red. EQ Boost mild-hybrid, 429 hp inline-six, AMG-tuned chassis.'},
+ {slug:'mercedes-amg-gle-53-coupe',short:'gle-coupe',name:'Mercedes-AMG GLE 53 Coupe',color:'Cavansite Blue',badge:'AMG',day:400,fourHour:200,weekly:2240,unit:'day',hp:'429',zero:'5.2s',top:'190 mph',seats:5,drive:'AWD',engine:'3.0L I6 + EQ Boost',deposit:'$1,000',miles:'150 mi/day',loc:'Puerto Rico',desc:'The AMG fastback in Cavansite Blue. 429 hp, 4MATIC+ grip and that sloping coupe-SUV roofline — the sport SUV that turns heads.'},
+ {slug:'bmw-x7-grey',short:'x7',name:'BMW X7',color:'Mineral Grey',badge:'X7',day:300,fourHour:null,weekly:1680,unit:'day',hp:'375',zero:'4.6s',top:'190 mph',seats:7,drive:'AWD',engine:'3.0L Turbo I6',deposit:'$1,000',miles:'150 mi/day',loc:'Puerto Rico',desc:'Three-row X7 in mineral grey. Captain seats, panoramic sunroof, executive luxury for groups of seven.'},
+ {slug:'cadillac-escalade-chauffeur',short:'escalade-chauffeur',name:'Cadillac Escalade — Chauffeured',color:'With driver · 2-hr min',badge:'Chauffeur',day:125,fourHour:null,weekly:null,unit:'hr',hp:'420',zero:'5.7s',top:'190 mph',seats:7,drive:'AWD',engine:'6.2L V8',deposit:'None',miles:'Unlimited',loc:'Puerto Rico',desc:'Black-on-black ESV with a professional chauffeur included. Captain seats, Burmester audio, Super Cruise — arrive in a moving suite. 2-hour minimum in the metro area, 4-hour minimum outside metro; airport &amp; point-to-point transfers available.'},
+ {slug:'bmw-x6-grey',short:'x6',name:'BMW X6',color:'Space Grey',badge:'X6',day:400,fourHour:null,weekly:2240,unit:'day',hp:'375',zero:'4.7s',top:'155 mph',seats:5,drive:'AWD',engine:'3.0L Turbo I6',deposit:'$1,000',miles:'150 mi/day',loc:'Puerto Rico',desc:'Coupe-styled X6 in metallic grey — sculpted roofline, twin-turbo inline-six punch, and a driver-focused cabin that turns heads across the island.'},
+ {slug:'bmw-x1-white',short:'x1',name:'BMW X1',color:'Alpine White',badge:'X1',day:250,fourHour:null,weekly:1400,unit:'day',hp:'241',zero:'6.2s',top:'143 mph',seats:5,drive:'AWD',engine:'2.0L Turbo I4',deposit:'$750',miles:'200 mi/day',loc:'Puerto Rico',desc:'Agile X1 in crisp Alpine White — nimble, efficient, and premium inside. The ideal compact luxury SUV for cruising San Juan and beyond.'}
+];
+const SHORT2SLUG={}; cars.forEach(function(c){if(c.short)SHORT2SLUG[c.short]=c.slug;});
+let current=null;
+function card(c){
+  const photo=c.pending?'<div class="pending">Photos pending</div>':'<img loading="lazy" src="'+LIVE+c.slug+'.webp" alt="'+c.name+'">';
+  const priceLbl='$'+c.day.toLocaleString()+' <span>/ '+c.unit+'</span>';
+  return '<article class="card" onclick="openM(\''+c.slug+'\')"><div class="photo">'+photo+'<span class="badge">'+c.badge+'</span></div>'
+    +'<div class="cbody"><div class="cname">'+c.name+'</div><div class="cmeta">'+c.color+'</div>'
+    +'<div class="specs"><div><b>'+c.hp+'</b>hp</div><div><b>'+c.zero+'</b>0–60</div><div><b>'+c.seats+'</b>seats</div></div>'
+    +'<div class="cfoot"><div class="price">'+priceLbl+'</div><button class="book">Details</button></div></div></article>';
+}
+function show(loc){
+  document.getElementById('tbPR').classList.toggle('active',loc==='Puerto Rico');
+  document.getElementById('tbMIA').classList.toggle('active',loc==='Miami');
+  const list=cars.filter(c=>c.loc===loc);
+  document.getElementById('grid').innerHTML=list.map(card).join('');
+  document.getElementById('grid').style.display=list.length?'grid':'none';
+  document.getElementById('miamiEmpty').style.display=(loc==='Miami'&&!list.length)?'block':'none';
+}
+function bookCar(){ if(!current) return; var l=document.getElementById('vbook-'+current.slug); if(l){ l.click(); } }
+function copyCarLink(){
+  if(!current||!current.short) return;
+  var url='https://palmexoticrentals.com/'+current.short;
+  var b=document.getElementById('copyBtn'), t=b.innerHTML;
+  function done(){ b.innerHTML='✓ Link copied!'; setTimeout(function(){b.innerHTML=t;},1600); }
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(done,done); }
+  else { try{var ta=document.createElement('textarea');ta.value=url;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}catch(e){} done(); }
+}
+var galPhotos=[], galIdx=0;
+function renderGal(){var m=document.getElementById('mgalMain');if(!m||!galPhotos.length)return;m.src=galPhotos[galIdx];var d=document.querySelectorAll('.mgal-dot');for(var i=0;i<d.length;i++)d[i].classList.toggle('active',i===galIdx);}
+function galSet(i){if(!galPhotos.length)return;galIdx=(i%galPhotos.length+galPhotos.length)%galPhotos.length;renderGal();}
+function galNav(d){galSet(galIdx+d);}
+document.addEventListener('touchstart',function(e){window.__sx=(e.target.closest&&e.target.closest('#mgal'))?e.touches[0].clientX:null;},{passive:true});
+document.addEventListener('touchend',function(e){if(window.__sx==null)return;var dx=e.changedTouches[0].clientX-window.__sx;if(Math.abs(dx)>40)galNav(dx<0?1:-1);window.__sx=null;},{passive:true});
+document.addEventListener('keydown',function(e){if(!document.getElementById('modal').classList.contains('open'))return;if(e.key==='ArrowLeft')galNav(-1);if(e.key==='ArrowRight')galNav(1);if(e.key==='Escape')closeM();});
+function openM(slug){
+  const c=cars.find(x=>x.slug===slug); if(!c)return; current=c;
+  (function(){
+    var mi=document.getElementById('mImg');
+    if(c.pending){ mi.innerHTML='<div class="pending2">Photos pending</div>'; galPhotos=[]; return; }
+    var n=PC[c.slug]||1; galPhotos=[LIVE+c.slug+'.webp'];
+    for(var i=1;i<n;i++) galPhotos.push(LIVE+c.slug+'-p'+i+'.webp');
+    galIdx=0;
+    var navs = n>1 ? '<button type="button" class="mgal-nav prev" onclick="galNav(-1)" aria-label="Previous">‹</button><button type="button" class="mgal-nav next" onclick="galNav(1)" aria-label="Next">›</button>' : '';
+    var dots = n>1 ? '<div class="mgal-dots">'+galPhotos.map(function(_,i){return '<span class="mgal-dot'+(i===0?' active':'')+'" onclick="galSet('+i+')"></span>';}).join('')+'</div>' : '';
+    mi.innerHTML='<div class="mgal" id="mgal"><img id="mgalMain" class="hero-img" src="'+galPhotos[0]+'" alt="'+c.name+'">'+navs+dots+'</div>';
+  })();
+  document.getElementById('mName').textContent=c.name;
+  document.getElementById('mSub').textContent=c.color;
+  const rates=[['Day','$'+c.day.toLocaleString()+(c.unit==='hr'?'/hr':'')]];
+  if(c.fourHour)rates.push(['4 Hours','$'+c.fourHour]);
+  if(c.weekly)rates.push(['Weekly','$'+c.weekly.toLocaleString()]);
+  document.getElementById('mRates').innerHTML=rates.map(r=>'<div class="rate"><small>'+r[0]+'</small><b>'+r[1]+'</b></div>').join('');
+  const specs=[['Horsepower',c.hp+' hp'],['0–60',c.zero],['Top Speed',c.top],['Seats',c.seats],['Drivetrain',c.drive],['Engine',c.engine],['Deposit',c.deposit],['Mileage',c.miles]];
+  document.getElementById('mSpecs').innerHTML=specs.map(s=>'<div class="spec"><small>'+s[0]+'</small><b>'+s[1]+'</b></div>').join('');
+  document.getElementById('mDesc').innerHTML=c.desc;
+  const known=!!VALARA_UUIDS[c.slug], msg=document.getElementById('mBookMsg');
+  msg.style.display=known?'none':'block';
+  msg.textContent='Not in Valara yet — “Book” opens your full catalog. Add '+c.name+' in Valara to enable direct booking.';
+  document.getElementById('modal').classList.add('open');
+}
+function closeM(){document.getElementById('modal').classList.remove('open')}
+show('Puerto Rico');
+document.querySelectorAll('.navlinks a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('.navlinks').classList.remove('open');});});
+// Static per-car Valara links (present at load so links.js wires them exactly like the live site)
+document.body.insertAdjacentHTML('beforeend','<div style="position:absolute;left:-9999px;top:0" aria-hidden="true">'+cars.map(function(c){var u=valaraUrl(c.slug);return '<a id="vbook-'+c.slug+'" href="'+u+'" data-valara-url="'+u+'" target="_blank" rel="noopener">book</a>';}).join('')+'</div>');
+// Auto-open a car's detail when arriving via its custom link (/urus-s, /g63, ...)
+(function(){
+  var p=(location.pathname||'').replace(/^\/+|\/+$/g,'').toLowerCase();
+  var slug=SHORT2SLUG[p];
+  if(slug){ var c=cars.find(function(x){return x.slug===slug;}); if(c){ if(c.loc!=='Puerto Rico'){show(c.loc);} openM(slug); } }
+})();
+</script>
+<script src="https://api.valara.io/api/v1/public/iframes/links.js?button_color=%23000000&button_text_color=%23FFFFFF&sig=eW1LdjJmU2E3MlIxRlNVcFBwMWkydk5MZ2NIS1hEVVhOWkxBUE52WTJkQ2xRWHBWY2RFUmxkRHZWbk5sU1R6LzFoc3F2b0NxMGs0b2d0aENxc2xrR1JTN21weDBIYWpiMUZveDlDd2trTldMSjZYNVk2Z1gxQW5DMm5tRGFrQnltT3lISzdueGh0SzdCQnUwMHVrTk9aRUNORzBhVHgwak45azhLMDdVZzZWakw0UDNlU3FIeCtESkY2WnpoUFhFem9GazhIVjZxWXgxNFFLQUVEYjl4bjZCblhRWHRzdjZjZVM2LS1GUG1nSDUzWG1XOXRzcGtGLS1zemlSRCs3ZzdRc0R6eXdOaWkwS2lBPT0"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/urus-s", "destination": "/vehicles" },
+    { "source": "/urus-yellow", "destination": "/vehicles" },
+    { "source": "/g63", "destination": "/vehicles" },
+    { "source": "/corvette", "destination": "/vehicles" },
+    { "source": "/escalade-2026", "destination": "/vehicles" },
+    { "source": "/cybertruck", "destination": "/vehicles" },
+    { "source": "/escalade-sport", "destination": "/vehicles" },
+    { "source": "/escalade-chauffeur", "destination": "/vehicles" },
+    { "source": "/gle-53", "destination": "/vehicles" },
+    { "source": "/gle-coupe", "destination": "/vehicles" },
+    { "source": "/x7", "destination": "/vehicles" },
+    { "source": "/x6", "destination": "/vehicles" },
+    { "source": "/x1", "destination": "/vehicles" }
+  ]
+}
