@@ -162,7 +162,7 @@
   <div class="wrap" style="width:100%"><nav>
     <a class="brand" href="/"><img class="brandlogo" src="/logo-emblem.png" alt="Palm Exotic Rentals emblem"> <div>PALM EXOTIC RENTALS<small>FEEL THE LUXURY</small></div></a>
     <div class="navright">
-      <div class="navlinks"><a href="/vehicles">Fleet</a><a href="/villas">Villas<span class="soonpill">Soon</span></a><a href="/chauffeur">Chauffeur</a><a href="#why">About</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
+      <div class="navlinks"><a href="/vehicles">Fleet</a><a href="/villas">Villas<span class="soonpill">Soon</span></a><a href="/chauffeur">Chauffeur</a><a href="/about">About</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
       <button class="btn" onclick="location.href='/vehicles'">Book Now</button>
       <button class="navtoggle" aria-label="Menu" onclick="document.querySelector('.navlinks').classList.toggle('open')">☰</button>
     </div>
@@ -204,14 +204,6 @@
     <a class="btn" href="/vehicles" style="display:inline-block;padding:14px 30px">View all vehicles →</a>
   </div>
 </div></section>
-
-<!-- WHY US -->
-<section class="band" id="why"><div class="wrap"><div class="vals">
-  <div class="val"><div class="ic">🚗</div><h4>Island-Wide Delivery</h4><p>Hotel, airport, or your front door — anywhere in Puerto Rico.</p></div>
-  <div class="val"><div class="ic">⭐</div><h4>5-Star Service</h4><p>Trusted by visitors and locals, with real reviews to back it.</p></div>
-  <div class="val"><div class="ic">🎩</div><h4>Chauffeur Available</h4><p>Prefer to be driven? Professional chauffeur from $125/hr.</p></div>
-  <div class="val"><div class="ic">💬</div><h4>Instant Concierge</h4><p>Fast answers and easy booking, message us anytime.</p></div>
-</div></div></section>
 
 <!-- HOW IT WORKS -->
 <section class="sec"><div class="wrap">
@@ -305,7 +297,7 @@ const cars=[
 let current=null;
 // Short custom link per car (Most Popular cards → /urus-s, /g63, ...)
 const SHORT={'lamborghini-urus-baby-blue':'urus-s','lamborghini-urus-yellow':'urus-yellow','mercedes-amg-g63-matte-black':'g63','chevrolet-corvette-z06':'corvette','cadillac-escalade-esv-sport-2026':'escalade-2026','tesla-cybertruck':'cybertruck','cadillac-escalade-black-esv-sport':'escalade-sport','cadillac-escalade-sport-2':'escalade-2','mercedes-gle-53-amg-red':'gle-53','mercedes-amg-gle-53-coupe':'gle-coupe','bmw-x7-grey':'x7','cadillac-escalade-chauffeur':'escalade-chauffeur','bmw-x6-grey':'x6','bmw-x1-white':'x1'};
-const POPULAR=['lamborghini-urus-baby-blue','mercedes-amg-g63-matte-black','chevrolet-corvette-z06','cadillac-escalade-esv-sport-2026'];
+const POPULAR=['lamborghini-urus-baby-blue','mercedes-amg-g63-matte-black','chevrolet-corvette-z06','cadillac-escalade-esv-sport-2026','lamborghini-urus-yellow','cadillac-escalade-black-esv-sport'];
 function locAbbr(loc){return loc==='Puerto Rico'?'PR':(loc==='Miami'?'MIA':loc);}
 var PIN='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
 function fcard(c){
