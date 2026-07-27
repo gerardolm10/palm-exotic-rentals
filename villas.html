@@ -70,6 +70,16 @@
   .modal.open{display:flex}
   .sheet{background:#fff;max-width:820px;width:100%;border-radius:18px;overflow:hidden;position:relative}
   .hero-img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#eef3f8;display:block}
+  .gal{position:relative;background:#0a1628}
+  .gal .main{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#0a1628}
+  .gal .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(10,22,40,.55);color:#fff;border:none;width:44px;height:44px;border-radius:50%;font-size:24px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+  .gal .nav:hover{background:rgba(10,22,40,.85)}
+  .gal .prev{left:12px}.gal .next{right:12px}
+  .gal .count{position:absolute;bottom:12px;right:14px;background:rgba(10,22,40,.7);color:#fff;font-size:12px;font-weight:700;padding:4px 11px;border-radius:999px;letter-spacing:.3px}
+  .thumbs{display:flex;gap:8px;overflow-x:auto;padding:10px 12px;background:#0a1628}
+  .thumbs::-webkit-scrollbar{height:6px}.thumbs::-webkit-scrollbar-thumb{background:#33465c;border-radius:999px}
+  .thumbs img{height:54px;width:82px;object-fit:cover;border-radius:8px;cursor:pointer;opacity:.5;flex:0 0 auto;border:2px solid transparent;transition:opacity .15s,border-color .15s}
+  .thumbs img.active{opacity:1;border-color:var(--blue2)}
   .body{padding:24px 26px 28px}
   .sheet h3{font-size:26px;font-weight:800;letter-spacing:-.5px}
   .sub{color:var(--muted);margin:2px 0 16px}
@@ -118,7 +128,13 @@
 <div class="modal" id="modal" onclick="if(event.target===this)closeV()">
   <div class="sheet">
     <button class="close" onclick="closeV()">×</button>
-    <div id="mImg"></div>
+    <div class="gal" id="gal">
+      <img class="main" id="galMain" alt="Patillas House">
+      <button class="nav prev" onclick="galMove(-1)" aria-label="Previous photo">‹</button>
+      <button class="nav next" onclick="galMove(1)" aria-label="Next photo">›</button>
+      <span class="count" id="galCount"></span>
+    </div>
+    <div class="thumbs" id="galThumbs"></div>
     <div class="body">
       <h3 id="mName"></h3>
       <div class="sub" id="mSub"></div>
@@ -136,6 +152,7 @@
 <script>
 var villa={
   slug:'patillas-house', name:'Patillas House', loc:'Patillas, Puerto Rico', shortloc:'Patillas',
+  photos:18,
   beds:2, baths:3, office:1, guests:6,
   amenities:['Private Pool','Ocean View','WiFi','Air Conditioning','Full Kitchen','Home Office','Parking','Smart TV','Washer & Dryer'],
   desc:"Patillas House is a private luxury home perched on a hillside on Puerto Rico's southeast coast — close enough to the sea for beautiful ocean views, yet tucked into the countryside for total peace and quiet. It's the best of both worlds: that relaxed, up-in-the-hills feel while still only minutes from the beach. With two bedrooms, a dedicated home office, three bathrooms, and a private pool, it comfortably hosts up to six guests — ideal for families, a remote-work getaway, or a weekend with friends. All with that Palm Exotic touch."
@@ -148,9 +165,23 @@ function card(v){
    +'<div class="cfoot"><div class="price">Inquire</div><button class="book">View villa</button></div></div></article>';
 }
 document.getElementById('grid').innerHTML=card(villa);
+var galI=0;
+function galSet(i){
+  var n=villa.photos;galI=(i+n)%n;
+  document.getElementById('galMain').src='/patillas-house-p'+(galI+1)+'.webp';
+  document.getElementById('galCount').textContent=(galI+1)+' / '+n;
+  var th=document.querySelectorAll('#galThumbs img');
+  th.forEach(function(t,k){t.classList.toggle('active',k===galI);});
+  var act=th[galI];if(act&&act.scrollIntoView){act.scrollIntoView({inline:'center',block:'nearest'});}
+}
+function galMove(d){galSet(galI+d);}
+function galBuild(){
+  var t='';for(var i=0;i<villa.photos;i++){t+='<img loading="lazy" src="/patillas-house-p'+(i+1)+'.webp" onclick="galSet('+i+')" alt="Patillas House photo '+(i+1)+'">';}
+  document.getElementById('galThumbs').innerHTML=t;
+}
 function openV(){
   var v=villa;
-  document.getElementById('mImg').innerHTML='<img class="hero-img" src="/patillas-house.webp" alt="'+v.name+'">';
+  galBuild();galSet(0);
   document.getElementById('mName').textContent=v.name;
   document.getElementById('mSub').textContent=v.loc;
   var specs=[['Bedrooms',v.beds],['Bathrooms',v.baths],['Office',v.office],['Guests',v.guests]];
@@ -164,6 +195,12 @@ function openV(){
 function closeV(){document.getElementById('modal').classList.remove('open');document.title='Luxury Villas in Puerto Rico — Palm Exotic Rentals';if((location.pathname||'')!=='/villas'){try{history.pushState({},'','/villas');}catch(e){}}}
 function copyLink(){var url='https://palmexoticrentals.com/patillas-house';var b=document.getElementById('copyBtn'),t=b.innerHTML;function d(){b.innerHTML='✓ Link copied!';setTimeout(function(){b.innerHTML=t;},1600);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(d,d);}else d();}
 document.querySelectorAll('.navlinks a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('.navlinks').classList.remove('open');});});
+// gallery swipe (touch)
+(function(){var g=document.getElementById('gal');if(!g)return;var x0=null;
+g.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+g.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)galMove(dx<0?1:-1);x0=null;});})();
+// keyboard nav when modal open
+document.addEventListener('keydown',function(e){if(!document.getElementById('modal').classList.contains('open'))return;if(e.key==='ArrowLeft')galMove(-1);else if(e.key==='ArrowRight')galMove(1);else if(e.key==='Escape')closeV();});
 // auto-open when arriving via /patillas-house
 (function(){var p=(location.pathname||'').replace(/^\/+|\/+$/g,'').toLowerCase();if(p==='patillas-house')openV();})();
 </script>
