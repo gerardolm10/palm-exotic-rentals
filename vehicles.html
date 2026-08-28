@@ -188,6 +188,8 @@ const VALARA_UUIDS={
  'bmw-x7-grey':'90198818-8f9e-45f7-8a9b-202ef85684c8',
  'cadillac-escalade-chauffeur':'2f51f414-420c-465a-8ba6-e1b1fc58ea78',
  'bmw-x6-grey':'f3b7ef9f-03a6-4b56-996e-5759e41b97b1',
+ 'bmw-x5-dravit-grey':'cd1bc70e-9485-4924-9672-1038f706995a',
+ 'bmw-x5-black-2026':'ba1ad121-9f3e-4820-b48b-545f102301d6',
  'bmw-x1-white':'16818b3d-a933-4917-9419-96d6d4b1ab77'
 };
 function valaraUrl(slug){return VALARA_UUIDS[slug]?'https://app.valara.io/iframe/products/'+VALARA_UUIDS[slug]:'https://app.valara.io/iframe/products';}
@@ -204,6 +206,8 @@ const cars=[
  {slug:'bmw-x7-grey',short:'x7',name:'BMW X7',color:'Mineral Grey',badge:'X7',day:300,fourHour:null,weekly:1680,unit:'day',hp:'375',zero:'4.6s',top:'190 mph',seats:7,drive:'AWD',engine:'3.0L Turbo I6',deposit:'$1,000',miles:'200 mi/day',loc:'Puerto Rico',desc:'Three-row X7 in mineral grey. Captain seats, panoramic sunroof, executive luxury for groups of seven.'},
  {slug:'cadillac-escalade-chauffeur',short:'escalade-chauffeur',name:'Cadillac Escalade — Chauffeured',color:'With driver · 2-hr min',badge:'Chauffeur',day:125,fourHour:null,weekly:null,unit:'hr',hp:'420',zero:'5.7s',top:'190 mph',seats:7,drive:'AWD',engine:'6.2L V8',deposit:'None',miles:'Unlimited',loc:'Puerto Rico',desc:'Black-on-black ESV with a professional chauffeur included. Captain seats, Burmester audio, Super Cruise — arrive in a moving suite. 2-hour minimum in the metro area, 4-hour minimum outside metro; airport &amp; point-to-point transfers available.'},
  {slug:'bmw-x6-grey',short:'x6',name:'BMW X6',color:'Space Grey',badge:'X6',day:400,fourHour:null,weekly:2240,unit:'day',hp:'375',zero:'4.7s',top:'155 mph',seats:5,drive:'AWD',engine:'3.0L Turbo I6',deposit:'$1,000',miles:'150 mi/day',loc:'Puerto Rico',desc:'Coupe-styled X6 in metallic grey — sculpted roofline, twin-turbo inline-six punch, and a driver-focused cabin that turns heads across the island.'},
+ {slug:'bmw-x5-dravit-grey',short:'x5-dravit',name:'BMW X5 Dravit Grey',color:'Dravit Grey',badge:'X5',day:400,fourHour:null,weekly:2240,unit:'day',hp:'375',zero:'5.3s',top:'130 mph',seats:5,drive:'AWD',engine:'3.0L TwinPower Turbo I6',deposit:'$1,000',miles:'150 mi/day',pending:true,loc:'Puerto Rico',desc:'The BMW X5 in Dravit Grey — a deep, rare metallic grey over a twin-turbo inline-six. Athletic handling, a whisper-quiet luxury cabin, and commanding presence for cruising Puerto Rico in understated style.'},
+ {slug:'bmw-x5-black-2026',short:'x5-black',name:'BMW X5 Black',color:'2026 · Black',badge:'2026',day:400,fourHour:null,weekly:2240,unit:'day',hp:'375',zero:'5.3s',top:'130 mph',seats:5,drive:'AWD',engine:'3.0L TwinPower Turbo I6',deposit:'$1,000',miles:'150 mi/day',pending:true,loc:'Puerto Rico',desc:'The 2026 BMW X5 in blacked-out elegance — twin-turbo inline-six power, a whisper-quiet leather cabin, and commanding road presence. Five seats of refined comfort with the athletic handling BMW is known for, from Old San Juan to the west coast.'},
  {slug:'bmw-x1-white',short:'x1',name:'BMW X1',color:'Alpine White',badge:'X1',day:250,fourHour:null,weekly:1400,unit:'day',hp:'241',zero:'6.2s',top:'143 mph',seats:5,drive:'AWD',engine:'2.0L Turbo I4',deposit:'$750',miles:'200 mi/day',loc:'Puerto Rico',desc:'Agile X1 in crisp Alpine White — nimble, efficient, and premium inside. The ideal compact luxury SUV for cruising San Juan and beyond.'}
 ];
 const SHORT2SLUG={}; cars.forEach(function(c){if(c.short)SHORT2SLUG[c.short]=c.slug;});
@@ -211,7 +215,7 @@ function locAbbr(loc){return loc==='Puerto Rico'?'PR':(loc==='Miami'?'MIA':loc);
 var PIN='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
 let current=null;
 function card(c){
-  const photo=c.pending?'<div class="pending">Photos pending</div>':'<img loading="lazy" src="'+LIVE+c.slug+'.webp" alt="'+c.name+'">';
+  const photo=c.pending?'<div class="pending">Photos coming soon</div>':'<img loading="lazy" src="'+LIVE+c.slug+'.webp" alt="'+c.name+'">';
   const priceLbl='$'+c.day.toLocaleString()+' <span>/ '+c.unit+'</span>';
   return '<article class="card" onclick="openM(\''+c.slug+'\')"><div class="photo">'+photo+'<span class="locpill">'+PIN+locAbbr(c.loc)+'</span></div>'
     +'<div class="cbody"><div class="cname">'+c.name+'</div><div class="cmeta">'+c.color+'</div>'
@@ -246,7 +250,7 @@ function openM(slug,fromUrl){
   const c=cars.find(x=>x.slug===slug); if(!c)return; current=c;
   (function(){
     var mi=document.getElementById('mImg');
-    if(c.pending){ mi.innerHTML='<div class="pending2">Photos pending</div>'; galPhotos=[]; return; }
+    if(c.pending){ mi.innerHTML='<div class="pending2">Photos coming soon</div>'; galPhotos=[]; return; }
     var n=PC[c.slug]||1; galPhotos=[LIVE+c.slug+'.webp'];
     for(var i=1;i<n;i++) galPhotos.push(LIVE+c.slug+'-p'+i+'.webp');
     galIdx=0;
