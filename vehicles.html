@@ -258,7 +258,7 @@ function openM(slug,fromUrl){
     var dots = n>1 ? '<div class="mgal-dots">'+galPhotos.map(function(_,i){return '<span class="mgal-dot'+(i===0?' active':'')+'" onclick="galSet('+i+')"></span>';}).join('')+'</div>' : '';
     mi.innerHTML='<div class="mgal" id="mgal"><img id="mgalMain" class="hero-img" src="'+galPhotos[0]+'" alt="'+c.name+'">'+navs+dots+'</div>';
   })();
-  document.getElementById('mName').textContent=c.name;
+  document.getElementById('mName').textContent=c.name;document.querySelector('.booknow').textContent=(c.slug==='cadillac-escalade-chauffeur'?'Book Chauffeur Service':'Book this vehicle');
   document.getElementById('mSub').textContent=c.color;
   const rates=[['Day','$'+c.day.toLocaleString()+(c.unit==='hr'?'/hr':'')]];
   if(c.fourHour)rates.push(['4 Hours','$'+c.fourHour]);
