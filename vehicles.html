@@ -319,7 +319,7 @@ document.body.insertAdjacentHTML('beforeend','<div style="position:absolute;left
 // Supports both the clean path (/urus-s) and the ?car= param used by the per-car preview pages.
 (function(){
   var params=new URLSearchParams(location.search||'');
-  var carParam=(params.get('car')||'').toLowerCase();
+  var carParam=(params.get('car')||'').toLowerCase();var locParam=(params.get('loc')||'').toLowerCase();if(locParam==='miami'&&!carParam){try{show('Miami');}catch(e){}}
   var p=(location.pathname||'').replace(/^\/+|\/+$/g,'').toLowerCase();
   var slug=SHORT2SLUG[carParam]||SHORT2SLUG[p];
   if(!slug && carParam && cars.find(function(x){return x.slug===carParam;})) slug=carParam;
